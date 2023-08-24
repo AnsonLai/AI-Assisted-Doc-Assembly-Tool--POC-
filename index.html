@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <title>AI Assisted Document Assembly Tool</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</head>
+
+<style>
+</style>
+
+<body class="d-flex flex-column" style="min-height: 100vh;">
+  <header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a class="navbar-brand ms-4" href="#">
+        <span class="h1">AI Assisted Document Assembly Tool</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+  </header>
+
+
+
+  <main class="flex-grow-1">
+    <div class="container">
+
+      <div class="row mt-5">
+        <p class="h4">Breach Notification Letter</p>
+        <p class="">Select the relevant provisions:</p>
+      </div>
+
+      <div class="row">
+        <div class="form-check">
+          <input id="checkbox-introduction" class="form-check-input" type="checkbox" value="introduction">
+          <label class="form-check-label" for="checkbox-introduction">
+            Introduction
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input id="checkbox-incidentDescription" class="form-check-input" type="checkbox" value="incidentDescription">
+          <label class="form-check-label" for="checkbox-incidentDescription">
+            Incident Description
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input id="checkbox-protectYourself" class="form-check-input" type="checkbox" value="protectYourself">
+          <label class="form-check-label" for="checkbox-protectYourself">
+            Protect Yourself
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input id="checkbox-securityFreeze" class="form-check-input" type="checkbox" value="securityFreeze">
+          <label class="form-check-label" for="checkbox-securityFreeze">
+            Security Freeze
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input id="checkbox-reviewCreditReports" class="form-check-input" type="checkbox" value="reviewCreditReports">
+          <label class="form-check-label" for="checkbox-reviewCreditReports">
+            Review Credit Reports
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input id="checkbox-remainVigilant" class="form-check-input" type="checkbox" value="remainVigilant">
+          <label class="form-check-label" for="checkbox-remainVigilant">
+            Remain Vigilant
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input id="checkbox-additionalInformation" class="form-check-input" type="checkbox"
+            value="additionalInformation">
+          <label class="form-check-label" for="checkbox-additionalInformation">
+            Additional Information
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input id="checkbox-assistance" class="form-check-input" type="checkbox" value="assistance">
+          <label class="form-check-label" for="checkbox-assistance">
+            Assistance
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input id="checkbox-closing" class="form-check-input" type="checkbox" value="closing">
+          <label class="form-check-label" for="checkbox-closing">
+            Closing
+          </label>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <p class="h4">Document</p>
+      </div>
+
+      <div class="row">
+        <textarea id="textarea" class="form-control border" rows="8" maxlength="8000"
+          placeholder="Resulting document will appear here"></textarea>
+      </div>
+
+      <div class="row">
+        <button id="btn-generate" type="button" class="btn btn-info">Generate document</button>
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer class="page-footer font-small text-white bg-dark">
+    <div class="footer-copyright text-center py-3">
+
+      <div class="text-center">
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="text-start d-inline-block align-center">
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+              data-name="bmc-button" data-slug="ansonlai" data-color="#FFDD00" data-emoji="" data-font="Lato"
+              data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000"
+              data-coffee-color="#ffffff"></script>
+          </div>
+          <div class="text-start d-inline-block align-center ms-3">
+          </div>
+        </div>
+      </div>
+      <p class="small mt-2">Your text is sent to OpenAI who charges us
+        ~$0.002
+        to process it. Every dollar goes a long way to keep this
+        site running.</p>
+    </div>
+
+  </footer>
+
+
+</body>
+
+<script>
+  var letter = "";
+  const letter_dict = {
+    introduction: `Dear (name of person):
+We are writing to inform you of a recent security incident at [name of organization]. This notification is sent pursuant to the New York State Information and Security Breach and Notification Act (General Business Law Section 899-aa or State Technology Law Section 208).`,
+
+    incidentDescription: `[Describe what happened in general terms including the date of the security incident, specific categories of personal/private information that were involved, what you are doing in response and inform the letter’s recipient as to what they can do to protect themselves as indicated below.)`,
+
+    protectYourself: `To protect yourself from the possibility of identity theft, we recommend that you immediately place a fraud alert on your credit files. A fraud alert conveys a special message to anyone requesting your credit report that you suspect you were a victim of fraud. When you or someone else attempts to open a credit account in your name, the lender should take measures to verify that you have authorized the request. A fraud alert should not stop you from using your existing credit cards or other accounts, but it may slow down your ability to get new credit. An initial fraud alert is valid for ninety (90) days. To place a fraud alert on your credit reports, contact one of the three major credit reporting agencies at the appropriate number listed below or via their website. One agency will notify the other two on your behalf. You will then receive letters from the agencies with instructions on how to obtain a free copy of your credit report from each.
+Equifax (888)766-0008 or www.fraudalert.equifax.com
+Experian (888) 397-3742 or www.experian.com
+TransUnion (800) 680-7289 or www.transunion.com`,
+
+    securityFreeze: `New York residents can also consider placing a Security Freeze on their credit reports. A Security Freeze prevents most potential creditors from viewing your credit reports and therefore, further restricts the opening of unauthorized accounts. For more information on placing a security freeze on your credit reports, please go to the New York Department of State Division of Consumer Protection website at https://dos.nysits.acsitefactory.com/consumer-protection.`,
+
+    reviewCreditReports: `When you receive a credit report from each agency, review the reports carefully. Look for accounts you did not open, inquiries from creditors that you did not initiate, and confirm that your personal information, such as home address and Social Security number, is accurate. If you see anything you do not understand or recognize, call the credit reporting agency at the telephone number on the report. You should also call your local police department and file a report of identity theft. Get and keep a copy of the police report because you may need to give copies to creditors to clear up your records or to access transaction records.`,
+
+    remainVigilant: `Even if you do not find signs of fraud on your credit reports, we recommend that you remain vigilant in reviewing your credit reports from the three major credit reporting agencies. You may obtain a free copy of your credit report once every 12 months by visiting www.annualcreditreport.com, calling toll-free 877-322-8228 or by completing an Annual Credit Request Form at:
+www.ftc.gov/bcp/menus/consumer/credit/rights.shtm and mailing to:
+Annual Credit Report Request Service,
+P.O. Box 1025281
+Atlanta, GA 30348-5283`,
+
+    additionalInformation: `For more information on identity theft, you can visit the following websites:
+New York Department of State Division of Consumer Protection: https://dos.nysits.acsitefactory.com/consumer-protection
+NYS Attorney General at: http://www.ag.ny.gov/home.html
+Federal Trade Commission at: www.ftc.gov/bcp/edu/microsites/idtheft/`,
+
+    assistance: `If there is anything [name of your organization and website] can do to further assist you, please call [name] and [phone number].`,
+
+    closing: `[Closing]
+Please note: This sample letter from a breaching entity to notify New York residents of a security breach incident is for informational purposes only and should not be construed as legal advice and/or as policy of the State of New York. It is recommended that you speak with a privacy professional and/or an attorney for further advice.`
+  };
+
+  function assemble_letter() {
+
+    const checkboxes = document.querySelectorAll(".form-check-input:checked");
+    checkboxes.forEach(function(checkbox) {
+      const checkboxValue = checkbox.value;
+      if (checkboxValue in letter_dict) {
+        letter += letter_dict[checkboxValue] + "\n\n"; // Add each part with a newline separator
+      }
+    });
+    
+    // Output the assembled letter
+    console.log(letter);
+
+    return letter;
+
+  };
+</script>
+
+<script>
+  $("#btn-generate").click(function () {
+    const apiKey = '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';
+    const endpoint = 'https://api.openai.com/v1/chat/completions';
+
+    const prompt = "Please take the following letter, which was put together with pieces from other letters, and rewrite it so that it is one single coherent letter.  Make minimal changes to the order and the phrasing, however, you can use transition phrases and make internal references to earlier text to make the letter more seemless.";
+
+    var letter = assemble_letter();
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`
+    };
+
+    const requestBody = JSON.stringify({
+      model: 'gpt-3.5-turbo',
+      messages: [{ role: 'system', content: 'You are a lawyer writing legal documents.' }, { role: 'user', content: prompt }, { role: 'user', content: letter }]
+    });
+
+    $.ajax({
+      url: endpoint,
+      type: 'POST',
+      headers: headers,
+      data: requestBody,
+      dataType: 'json',
+      success: function (responseData) {
+        const response = responseData.choices[0].message.content;
+        $('#textarea').text(response);
+      },
+      error: function (error) {
+        console.error('Error:', error);
+      }
+    });
+  });
+</script>
